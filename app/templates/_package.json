@@ -1,0 +1,13 @@
+{
+  "name": "<%= name %>",
+  "version": "0.1.0",
+  "devDependencies": {<% if (buildSystem === 'Grunt') { %>
+    "grunt": "^0.4.5",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^0.6.1"<% } else if (buildSystem === 'Gulp') { %>
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^2.0.6",
+    "gulp-sourcemaps": "^1.6.0"<% } %>
+  }
+}
