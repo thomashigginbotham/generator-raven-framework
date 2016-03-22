@@ -25,11 +25,17 @@
 				message: 'Build system',
 				choices: ['None', 'Grunt', 'Gulp'],
 				default: 0
+			}, {
+				type: 'confirm',
+				name: 'linters',
+				message: 'Include common linting configurations',
+				default: true
 			}], function (answers) {
 				this.log('Scaffolding your app now...');
 
 				this.name = answers.name;
 				this.buildSystem = answers.buildSystem;
+				this.linters = answers.linters;
 
 				done();
 			}.bind(this));
@@ -48,6 +54,10 @@
 			});
 
 			// Copy files
+			if (this.linters) {
+				fileList = fileList.concat(['.editorconfig', '.htmlhintrc', '.jscsrc', '.jshintrc', '.scss-lint.yml']);
+			}
+
 			fileList.forEach(function (filename) {
 				that.fs.copy(
 					that.templatePath(filename),
@@ -62,22 +72,29 @@
 					this.destinationPath('package.json'),
 					{
 						name: _.slugify(_.humanize(this.name)),
-						buildSystem: this.buildSystem
+						buildSystem: this.buildSystem,
+						linters: this.linters
 					}
 				);
 
 				// Copy build system files
 				if (this.buildSystem === 'Grunt') {
-					this.fs.copy(
-						this.templatePath('Gruntfile.js'),
-						this.destinationPath('Gruntfile.js')
+					this.fs.copyTpl(
+						this.templatePath('_Gruntfile.js'),
+						this.destinationPath('Gruntfile.js'),
+						{
+							linters: this.linters
+						}
 					);
 				}
 
 				if (this.buildSystem === 'Gulp') {
-					this.fs.copy(
-						this.templatePath('gulpfile.js'),
-						this.destinationPath('gulpfile.js')
+					this.fs.copyTpl(
+						this.templatePath('_gulpfile.js'),
+						this.destinationPath('gulpfile.js'),
+						{
+							linters: this.linters
+						}
 					);
 				}
 			}
