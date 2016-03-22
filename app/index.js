@@ -1,17 +1,17 @@
-(function() {
+(function () {
 	'use strict';
 
 	var generators = require('yeoman-generator');
 	var _ = require('underscore.string');
 
 	module.exports = generators.Base.extend({
-		constructor: function() {
+		constructor: function () {
 			generators.Base.apply(this, arguments);
 		},
-		initializing: function() {
+		initializing: function () {
 			this.pkg = require('../package.json');
 		},
-		prompting: function() {
+		prompting: function () {
 			var done = this.async();
 
 			this.prompt([{
@@ -25,7 +25,7 @@
 				message: 'Build system',
 				choices: ['None', 'Grunt', 'Gulp'],
 				default: 0
-			}], function(answers) {
+			}], function (answers) {
 				this.log('Scaffolding your app now...');
 
 				this.name = answers.name;
@@ -34,13 +34,13 @@
 				done();
 			}.bind(this));
 		},
-		writing: function() {
+		writing: function () {
 			var that = this;
 			var dirList = ['css', 'scss'];
 			var fileList = ['demo.html', 'LICENSE.txt', 'README.md'];
 
 			// Copy directories
-			dirList.forEach(function(dirName) {
+			dirList.forEach(function (dirName) {
 				that.fs.copy(
 					that.templatePath(dirName + '/**/*'),
 					that.destinationPath(dirName)
@@ -48,7 +48,7 @@
 			});
 
 			// Copy files
-			fileList.forEach(function(filename) {
+			fileList.forEach(function (filename) {
 				that.fs.copy(
 					that.templatePath(filename),
 					that.destinationPath(filename)
@@ -82,7 +82,7 @@
 				}
 			}
 		},
-		install: function() {
+		install: function () {
 			if (this.buildSystem !== 'None') {
 				this.installDependencies();
 			}
