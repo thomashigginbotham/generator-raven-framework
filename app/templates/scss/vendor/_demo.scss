@@ -15,6 +15,7 @@ $canvas-limit: 1400px;
 body {
 	tab-size: 4;
 	line-height: 1.6;
+	font-family: sans-serif;
 	color: $color-text;
 	background-color: $color-bg;
 }
@@ -26,7 +27,6 @@ code {
 pre {
 	padding: 1rem;
 	max-height: 400px;
-	font-size: .875em;
 	color: $color-grey-light;
 	background-color: $color-primary-desaturated;
 

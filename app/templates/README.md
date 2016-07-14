@@ -2,13 +2,13 @@
 
 Raven is a flexible, pluggable framework that is used to build everything from the most simplistic marketing websites to highly advanced web applications. At its core is a finely tuned grid system used for creating responsive layouts using Sass. It’s extensible architecture makes it easy to integrate with other systems, so you can add in whatever you need, whether it be a Grunt/Gulp build system, a unit testing environment, or an opinionated JavaScript framework. Here are some of the “add-ins” currently in development:
 
-* **Raven Dev Environment** – Work in real-time with Sass auto-compilation and LiveReload, then build optimized code for production environments.
+* **[Raven Dev Environment](https://github.com/thomashigginbotham/raven-dev-env)** – Work in real-time with Sass auto-compilation and LiveReload, then build optimized code for production environments.
 * **Raven Pattern Library** – Add a style guide and auto-updated documentation to your project, based on the principles of atomic design.
 * **Raven UI** – Take advantage of common interfaces like carousels, accordions, off-canvas menus, and more.
 * **Raven Forms** – Improve your form layouts and styles.
 * **Raven RequireJS** – Create AMD-compliant JavaScript modules and keep your code organized.
 * **Raven Unit Tests** – Write unit tests with Karma and Jasmine. Then automate them with Grunt or Gulp using the PhantomJS headless browser.
-* **Raven Code Collaboration** – Specify EditorConfig rules and common linting configurations for your team.
+* **[Raven Code Collaboration](https://github.com/thomashigginbotham/raven-code-collab)** – Specify EditorConfig rules and common linting configurations for your team.
 * **Raven High-DPI Sprites** – Use the Compass sprite map generator to create separate sprite maps for low- and high-DPI images.
 
 ...and more to come.

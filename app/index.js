@@ -42,28 +42,63 @@
 		},
 		writing: function () {
 			var that = this;
-			var dirList = ['css', 'scss'];
-			var fileList = ['demo.html', 'LICENSE.txt', 'README.md'];
+			var dirList = ['scss', 'fonts', 'js', 'images'];
+			var rootFileList = [
+				'LICENSE.txt',
+				'README.md'
+			];
+			var appFileList = [
+				'android-chrome-192x192.png',
+				'apple-touch-icon.png',
+				'browserconfig.xml',
+				'favicon-16x16.png',
+				'favicon-32x32.png',
+				'favicon.ico',
+				'manifest.json',
+				'mstile-150x150.png',
+				'safari-pinned-tab.svg'
+			];
 
 			// Copy directories
+			if (this.buildSystem === 'None') {
+				dirList = dirList.concat(['css']);
+			}
+
 			dirList.forEach(function (dirName) {
 				that.fs.copy(
 					that.templatePath(dirName + '/**/*'),
-					that.destinationPath(dirName)
+					that.destinationPath('app/' + dirName)
 				);
 			});
 
 			// Copy files
 			if (this.linters) {
-				fileList = fileList.concat(['.editorconfig', '.htmlhintrc', '.jscsrc', '.jshintrc', '.scss-lint.yml']);
+				rootFileList = rootFileList.concat(['.editorconfig', '.htmlhintrc', '.jscsrc', '.jshintrc', '.scss-lint.yml']);
 			}
 
-			fileList.forEach(function (filename) {
+			rootFileList.forEach(function (filename) {
 				that.fs.copy(
 					that.templatePath(filename),
 					that.destinationPath(filename)
 				);
 			});
+
+			appFileList.forEach(function (filename) {
+				that.fs.copy(
+					that.templatePath(filename),
+					that.destinationPath('app/' + filename)
+				);
+			});
+
+			// Copy index.html
+			this.fs.copyTpl(
+				this.templatePath('_index.html'),
+				this.destinationPath('app/index.html'),
+				{
+					name: this.name,
+					linters: this.linters
+				}
+			);
 
 			if (this.buildSystem !== 'None') {
 				// Copy package.json
@@ -101,7 +136,15 @@
 		},
 		install: function () {
 			if (this.buildSystem !== 'None') {
-				this.installDependencies();
+				this.installDependencies({
+					callback: function () {
+						if (this.buildSystem === 'Grunt') {
+							this.spawnCommand('grunt', ['serve']);
+						} else if (this.buildSystem === 'Gulp') {
+							this.spawnCommand('gulp', ['serve']);
+						}
+					}.bind(this)
+				});
 			}
 		}
 	});

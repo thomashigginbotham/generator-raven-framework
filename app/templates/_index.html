@@ -3,8 +3,26 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Raven Framework Starter Page</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Icons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="manifest.json">
+	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#2c2c6f">
+	<meta name="theme-color" content="#ffffff">
+
+	<!-- Style Sheets -->
+	<!-- build:css:dist css/main.min.css -->
 	<link rel="stylesheet" href="css/main.css">
+	<!-- /build -->
+
+	<!-- Scripts -->
+	<!-- build:js:dist js/scripts.min.js -->
+	<script src="js/scripts.js" async></script>
+	<!-- /build -->
 </head>
 
 <body>
@@ -34,14 +52,14 @@
 		</nav>
 
 		<main>
-			<h1>Raven Framework Starter Page</h1>
+			<h1>Starter Page for <%= name %></h1>
 
 			<section id="intro" class="intro">
 				<h2>Introduction</h2>
 				<p>This simple starter page provides some basic information and examples for working with Raven. When you’re ready to start building, just follow these quick steps:</p>
 
 				<ol>
-					<li>Delete the file at <strong>scss/vendor/_demo.scss</strong> and the reference to it in <strong>scss/main.scss</strong>.</li>
+					<li>Delete the file at <strong>app/scss/vendor/_demo.scss</strong> and the reference to it in <strong>app/scss/main.scss</strong>.</li>
 					<li>Remove the content of this HTML file or create a new one.</li>
 					<li>Write your HTML and Sass.</li>
 				</ol>
@@ -53,13 +71,13 @@
 				<p>At its core, Raven is just a CSS grid system that uses Sass. If that’s all you need, no problem, we won’t be pushy. But just so you’re aware, Raven is an extensible framework with much more to offer.</p>
 
 				<ul>
-					<li><strong>Raven Dev Environment*</strong> — Work in real-time with Sass auto-compilation and LiveReload. Then build optimized code for production environments.</li>
+					<li><strong><a href="https://github.com/thomashigginbotham/raven-dev-env">Raven Dev Environment</a><% if (linters) { %> (Included!)<% } %></strong> — Work in real-time with Sass auto-compilation and LiveReload. Then build optimized code for production environments.</li>
 					<li><strong>Raven Pattern Library*</strong> — Add a style guide and auto-updated documentation to your project, based on the principles of atomic design.</li>
 					<li><strong>Raven UI*</strong> — Take advantage of common interfaces such as carousels, accordions, off-canvas menus, and more.</li>
 					<li><strong>Raven Forms*</strong> — Improve your form layouts and styles.</li>
 					<li><strong>Raven RequireJS*</strong> — Create AMD-compliant JavaScript modules and keep your code organized.</li>
 					<li><strong>Raven Unit Tests*</strong> — Write unit tests with Karma and Jasmine. Then automate them with Grunt or Gulp using the PhantomJS headless browser.</li>
-					<li><strong>Raven Code Collab*</strong> — Specify EditorConfig rules and common linting configurations for your team.</li>
+					<li><strong><a href="https://github.com/thomashigginbotham/raven-code-collab">Raven Code Collab</a><% if (linters) { %> (Included!)<% } %></strong> — Specify EditorConfig rules and common linting configurations for your team.</li>
 					<li><strong>Raven High-DPI Sprites*</strong> — Use the Compass sprite map generator to create separate sprite maps for low- and high-DPI images.</li>
 				</ul>
 
@@ -340,13 +358,13 @@
 				</ol>
 
 				<h3>Grunt</h3>
-				<p>Use <code>grunt watch</code> to automatically compile your Sass into CSS as you make changes. Run <code>grunt</code> by itself to generate optimized CSS.</p>
+				<p>Use <code>grunt serve</code> to automatically compile your Sass into CSS as you make changes. Run <code>grunt</code> by itself to generate optimized CSS.</p>
 
 				<h3>Gulp</h3>
-				<p>Use <code>gulp watch</code> to automatically compile your Sass into CSS as you make changes. Run <code>gulp</code> by itself to generate optimized CSS.</p>
+				<p>Use <code>gulp serve</code> to automatically compile your Sass into CSS as you make changes. Run <code>gulp</code> by itself to generate optimized CSS.</p>
 
 				<div class="message-info">
-					<p>If you’re looking for a more robust development environment, consider using Raven Dev Environment.</p>
+					<p>Check out the <strong>Gruntfile.js</strong> or <strong>gulpfile.js</strong> files for more tasks you can automate.</p>
 				</div>
 			</section>
 		</main>
